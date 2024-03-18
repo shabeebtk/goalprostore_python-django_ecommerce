@@ -1,0 +1,873 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- molla/product.html  22 Nov 2019 09:54:50 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Goal pro</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Goal pro">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/icons/site.html' %}">
+    <link rel="mask-icon" href="{% static 'images/icons/safari-pinned-tab.svg' %}" color="#666666">
+    <link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="{% static 'images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/owl-carousel/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/nouislider/nouislider.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-middle sticky-header">
+                <div class="container">
+                    <div class="header-left">
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+
+                        <a href="{% url 'home' %}" class="logo">
+                            <img src="{% static 'images/Goal_pro_logo_1.png' %}" alt="Logo" width="105" height="25">
+                        </a>
+
+                        <nav class="main-nav">
+                            <ul class="menu sf-arrows">
+                                <li class="megamenu-container active">
+                                    <a href="index.html" class="sf-with-ul">Home</a>
+                                </li>
+                                <li>
+                                    <a href="category.html" class="sf-with-ul">Shop</a>
+                                </li>
+                                <li>
+                                    <a href="product.html" class="sf-with-ul">Product</a>
+                                </li>
+                               
+                                <li>
+                                    <a href="blog.html" class="sf-with-ul">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="elements-list.html" class="sf-with-ul">Elements</a>
+                                </li>
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-left -->
+
+                    <div class="header-right">
+                        <div class="header-search">
+                            <a href="#" class="search-toggle" role="button" title="Search"><i class="icon-search"></i></a>
+                            <form action="#" method="get">
+                                <div class="header-search-wrapper">
+                                    <label for="q" class="sr-only">Search</label>
+                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                                </div><!-- End .header-search-wrapper -->
+                            </form>
+                        </div><!-- End .header-search -->
+
+                        <div class="dropdown cart-dropdown">
+                            <a href="{% url 'cart' %}" class="dropdown-toggle">
+                                <i class="icon-shopping-cart"></i>
+                                <span class="cart-count">{{ cart_count }}</span>
+                            </a>
+                            <div class="ml-5">
+                                <a href="{% url 'user_dashboard' %}">
+                                {% if check_user_signin %}
+                                    <i class="fa-regular fa-user fa-xl" style="color: #000000;"></i>
+                                {% else %}
+                                <i class="fa-solid fa-xl fa-user-xmark" style="color: #000000;"></i>
+                                {% endif %}
+                            </a>
+                            </div>
+                        </div>
+
+                    </div><!-- End .header-right -->
+                </div><!-- End .container -->
+            </div><!-- End .header-middle -->
+        </header><!-- End .header -->
+
+        <main class="main">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                <div class="container d-flex align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'shop' %}">shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">product profile</li>
+                    </ol>
+
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="container">
+                    <div class="product-details-top">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class=" product-gallery-vertical">
+                                    <div class="row">
+                                        <figure style="overflow: hidden;" class="product-main-image main-image product-gallery" id="product_image_div_zoom">
+                                            <img id="product_image_zoom" src="{{ product.image_1.url }}"  alt="product image">
+
+                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                                <i class="icon-arrows"></i>
+                                            </a>
+                                        </figure><!-- End .product-main-image -->
+
+                                        <div id="product-zoom-gallery" class="product-image-gallery">
+                                            <div class="product-gallery-item" href="#" data-image="{{ product.image_1.url }}" data-zoom-image="{{ product.image_1.url }}">
+                                                <img class="small-image" src="{{ product.image_1.url }}" alt="product side">
+                                            </div>
+
+                                            <div class="product-gallery-item" href="#" data-image="{{ product.image_2.url }}" data-zoom-image="{{ product.image_2.url }}">
+                                                <img class="small-image" src="{{ product.image_2.url }}" alt="product cross">
+                                            </div>
+
+                                            <div class="product-gallery-item" href="#" data-image="{{ product.image_3.url }}" data-zoom-image="{{ product.image_3.url }}">
+                                                <img class="small-image" src="{{ product.image_3.url }}" alt="product with model">
+                                            </div>
+
+                                            <div class="product-gallery-item" href="#" data-image="{{ product.image_4.url }}" data-zoom-image="{{ product.image_4.url }}">
+                                                <img class="small-image" src="{{ product.image_4.url }}" alt="product back">
+                                            </div>
+                                        </div><!-- End .product-image-gallery -->
+                                    </div><!-- End .row -->
+                                </div><!-- End .product-gallery -->
+                            </div><!-- End .col-md-6 -->
+
+
+                            
+                            <div class="col-md-6">
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                <div class="product-details">
+                                        <h1 class="product-title">{{ product.product_name }}</h1><!-- End .product-title -->
+                                    
+                                    <div class="product-price">
+                                        ₹{{ product.price }}
+                                    </div><!-- End .product-price -->
+
+                                    <div class="product-content">
+                                        <p>{{ product.description }}</p>
+                                    </div><!-- End .product-content -->
+
+                                    <!-- size  -->
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="size">Size:</label>
+                                        <div class="select-custom">
+                                            <select name="size" id="size" class="form-control">
+                                                <option value="#" selected="selected">Available sizes</option>
+                                                {% for sizes in all_sizes %}
+                                                <option value="{{ sizes.size }}">{{ sizes.size }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div><!-- End .select-custom -->
+
+                                    </div><!-- End .details-filter-row -->
+
+                                    <div class="details-filter-row details-row-size">
+                                        <label for="qty">Qty:</label>
+                                        <div class="product-details-quantity d-flex ">
+                                            <span class="counter-button minus border border-2 p-2 px-3"><i class="fas fa-minus"></i></span>
+                                            <input type="number" name="quantity" class="form-control" value="1" min="1" step="1" data-decimals="0" required >
+                                            <span class="counter-button plus border border-2 p-2 px-3"><i class="fas fa-plus"></i></span>
+                                        </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
+
+                                    {% if already_added %}
+                                        <p class="text-danger">{{already_added}}</p>
+                                    {% endif %}
+
+                                    {% if select_size_error %}
+                                        <p class="text-danger">{{select_size_error}}</p>
+                                    {% endif %}
+
+                                    {% if quantity_error %}
+                                        <p class="text-danger">{{quantity_error}}</p>
+                                    {% endif %}
+            
+                                    <div class="product-details-action">
+                                        {% if total_stock == 0 %}
+                                        <button class="btn btn-primary disabled" type="button">No stock</button>
+                                        {% elif already_cart_item %}
+                                        <a href="{% url 'cart' %}" class="btn-product btn-cart"><span>go to cart</span></a>
+                                        {% else %}
+                                        <a href="{% url 'add_to_cart' product.id %}"><button class="btn btn-primary" type="submit">add to cart</button></a>
+                                        {% endif %} <br>
+                                    </form>
+                                    
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                                        </div><!-- End .details-action-wrapper -->
+                                    </div><!-- End .product-details-action -->
+
+                                  
+                                    {% if total_stock < 10 and total_stock > 0 %}
+                                        <p class="text-danger">hurry only {{total_stock}} left !</p> 
+                                    {% elif total_stock < 20 and total_stock > 0 %}
+                                        <p class="text-danger">hurry only few left !</p>
+                                    {% endif %}
+                                    
+                                    
+              
+                                    <div class="d-none" id="product_id">{{product.id}}</div>
+                                    <div class="product-details-footer">
+                                        <div class="product-cat">
+                                            <span>Category:</span>
+                                            <a href="#">{{ product.category }}</a>
+                                            
+                                        </div><!-- End .product-cat -->
+
+
+
+                                <!-- success modall  -->
+                                {% for message in messages %}
+                                  
+                                {% if message.tags == 'success' %}
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script>
+                                        $(document).ready(function(){
+                                            $('#loadButton').click();
+                                        });
+                                    </script>
+                                {% endif %}
+                                {% endfor %}
+
+                                        <!-- Button trigger modal -->
+                                    <button id="loadButton" type="button" class="btn btn-primary d-none" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Launch demo modal
+                                    </button>
+
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div class="modal-body m-5 text-center">
+                                                     <h5>product added to cart <i class="fa-regular fa-circle-check fa-xl" style="color: #747a1f;"></i></h5>
+                                                    <a href="{% url 'cart' %}"><button type="button" class="btn btn-primary">Go to cart</button></a>
+                                                </div>
+                                              </div>
+                                            </div>  
+                                          </div>
+
+                                
+                                        
+
+                                        <div class="social-icons social-icons-sm">
+                                            <span class="social-label">Share:</span>
+                                            <a href="#" class="social-icon" title="Facebook" target="_blank"><i class="icon-facebook-f"></i></a>
+                                            <a href="#" class="social-icon" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+                                            <a href="#" class="social-icon" title="Instagram" target="_blank"><i class="icon-instagram"></i></a>
+                                            <a href="#" class="social-icon" title="Pinterest" target="_blank"><i class="icon-pinterest"></i></a>
+                                        </div>
+                                    </div><!-- End .product-details-footer -->
+                                </div><!-- End .product-details -->
+                            </div><!-- End .col-md-6 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .product-details-top -->
+
+                    <div class="product-details-tab">
+                        <ul class="nav nav-pills justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="product-desc-link" data-toggle="tab" href="#product-desc-tab" role="tab" aria-controls="product-desc-tab" aria-selected="true">Description</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-info-link" data-toggle="tab" href="#product-info-tab" role="tab" aria-controls="product-info-tab" aria-selected="false">Additional information</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-shipping-link" data-toggle="tab" href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab" aria-selected="false">Shipping & Returns</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="product-review-link" data-toggle="tab" href="#product-review-tab" role="tab" aria-controls="product-review-tab" aria-selected="false">Reviews (2)</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel" aria-labelledby="product-desc-link">
+                                <div class="product-desc-content">
+                                    <h3>Product Information</h3>
+                                    {{ product.description }}
+                                
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="product-info-tab" role="tabpanel" aria-labelledby="product-info-link">
+                                <div class="product-desc-content">
+                                    <h3>Information</h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
+
+                                    <h3>Fabric & care</h3>
+                                    <ul>
+                                        <li>Faux suede fabric</li>
+                                        <li>Gold tone metal hoop handles.</li>
+                                        <li>RI branding</li>
+                                        <li>Snake print trim interior </li>
+                                        <li>Adjustable cross body strap</li>
+                                        <li> Height: 31cm; Width: 32cm; Depth: 12cm; Handle Drop: 61cm</li>
+                                    </ul>
+
+                                    <h3>Size</h3>
+                                    <p>one size</p>
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel" aria-labelledby="product-shipping-link">
+                                <div class="product-desc-content">
+                                    <h3>Delivery & returns</h3>
+                                    <p>We deliver to over 100 countries around the world. For full details of the delivery options we offer, please view our <a href="#">Delivery information</a><br>
+                                    We hope you’ll love every purchase, but if you ever need to return an item you can do so within a month of receipt. For full details of how to make a return, please view our <a href="#">Returns information</a></p>
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
+                                <div class="reviews">
+                                    <h3>Reviews (2)</h3>
+                                    <div class="review">
+                                        <div class="row no-gutters">
+                                            <div class="col-auto">
+                                                <h4><a href="#">Samanta J.</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                </div><!-- End .rating-container -->
+                                                <span class="review-date">6 days ago</span>
+                                            </div><!-- End .col -->
+                                            <div class="col">
+                                                <h4>Good, perfect size</h4>
+
+                                                <div class="review-content">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
+                                                </div><!-- End .review-content -->
+
+                                                <div class="review-action">
+                                                    <a href="#"><i class="icon-thumbs-up"></i>Helpful (2)</a>
+                                                    <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
+                                                </div><!-- End .review-action -->
+                                            </div><!-- End .col-auto -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .review -->
+
+                                    <div class="review">
+                                        <div class="row no-gutters">
+                                            <div class="col-auto">
+                                                <h4><a href="#">John Doe</a></h4>
+                                                <div class="ratings-container">
+                                                    <div class="ratings">
+                                                        <div class="ratings-val" style="width: 100%;"></div><!-- End .ratings-val -->
+                                                    </div><!-- End .ratings -->
+                                                </div><!-- End .rating-container -->
+                                                <span class="review-date">5 days ago</span>
+                                            </div><!-- End .col -->
+                                            <div class="col">
+                                                <h4>Very good</h4>
+
+                                                <div class="review-content">
+                                                    <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
+                                                </div><!-- End .review-content -->
+
+                                                <div class="review-action">
+                                                    <a href="#"><i class="icon-thumbs-up"></i>Helpful (0)</a>
+                                                    <a href="#"><i class="icon-thumbs-down"></i>Unhelpful (0)</a>
+                                                </div><!-- End .review-action -->
+                                            </div><!-- End .col-auto -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .review -->
+                                </div><!-- End .reviews -->
+                            </div><!-- .End .tab-pane -->
+                        </div><!-- End .tab-content -->
+                    </div><!-- End .product-details-tab -->
+
+                    <h2 class="title text-center mb-4">recenty viewed</h2><!-- End .title text-center -->
+                    <div class="row">
+                    {% for product in recently_viewed_items %}
+                            <div class="product product-2 col-6 col-md-3">
+                                    <a href="{% url 'product_profile' product.id %}">
+                                        <img src="{{ product.image_1.url }}" alt="Product image" class="product-image">
+                                        <img src="{{ product.image_2.url }}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->              
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">{{ product.category }}</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="{% url 'product_profile' product.id %}">{{ product.product_name }}</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        ₹{{ product.price }}
+                                        {{ product.id }}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                            {% endfor %}
+                        </div>
+
+
+                    <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                        data-owl-options='{
+                            "nav": false, 
+                            "dots": true,
+                            "margin": 20,
+                            "loop": false,
+                            "responsive": {
+                                "0": {
+                                    "items":1
+                                },
+                                "480": {
+                                    "items":2
+                                },
+                                "768": {
+                                    "items":3
+                                },
+                                "992": {
+                                    "items":4
+                                },
+                                "1200": {
+                                    "items":4,
+                                    "nav": true,
+                                    "dots": false
+                                }
+                            }
+                        }'>
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-new">New</span>
+                                <a href="product.html">
+                                    <img src="{% static 'images/products/product-4.jpg' %}" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    
+                                </div><!-- End .product-action -->
+        
+                            </figure><!-- End .product-media -->
+                            
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Women</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Brown paperbag waist <br>pencil skirt</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $60.00
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 2 Reviews )</span>
+                                </div><!-- End .rating-container -->
+
+                                <div class="product-nav product-nav-thumbs">
+                                    <a href="#" class="active">
+                                        <img src="{% static 'images/products/product-4-thumb.jpg' %}" alt="product desc">
+                                    </a>
+                                    <a href="#">
+                                        <img src="{% static 'images/products/product-4-2-thumb.jpg' %}" alt="product desc">
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="{% static 'images/products/product-4-3-thumb.jpg' %}" alt="product desc">
+                                    </a>
+                                </div><!-- End .product-nav -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-out">Out of Stock</span>
+                                <a href="product.html">
+                                    <img src="{% static 'images/products/product-6.jpg' %}" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jackets</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Khaki utility boiler jumpsuit</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    <span class="out-price">$120.00</span>
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 6 Reviews )</span>
+                                </div><!-- End .rating-container -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <span class="product-label label-top">Top</span>
+                                <a href="product.html">
+                                    <img src="assets/images/products/product-11.jpg" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Shoes</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Light brown studded Wide fit wedges</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $110.00
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 80%;"></div><!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 1 Reviews )</span>
+                                </div><!-- End .rating-container -->
+
+                                <div class="product-nav product-nav-thumbs">
+                                    <a href="#" class="active">
+                                        <img src="{% static 'images/products/product-11-thumb.jpg' %}" alt="product desc">
+                                    </a>
+                                    <a href="#">
+                                        <img src="{% static 'images/products/product-11-2-thumb.jpg' %}" alt="product desc">
+                                    </a>
+
+                                    <a href="#">
+                                        <img src="{% static 'images/products/product-11-3-thumb.jpg' %}" alt="product desc">
+                                    </a>
+                                </div><!-- End .product-nav -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="{% static 'images/products/product-10.jpg' %}" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jumpers</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Yellow button front tea top</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $56.00
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 0%;"></div><!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 0 Reviews )</span>
+                                </div><!-- End .rating-container -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+
+                        <div class="product product-7 text-center">
+                            <figure class="product-media">
+                                <a href="product.html">
+                                    <img src="{% static 'images/products/product-7.jpg' %}" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    <a href="popup/quickView.html" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                    <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                </div><!-- End .product-action-vertical -->
+
+                                <div class="product-action">
+                                    <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                </div><!-- End .product-action -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="#">Jeans</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="product.html">Blue utility pinafore denim dress</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    $76.00
+                                </div><!-- End .product-price -->
+                                <div class="ratings-container">
+                                    <div class="ratings">
+                                        <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                                    </div><!-- End .ratings -->
+                                    <span class="ratings-text">( 2 Reviews )</span>
+                                </div><!-- End .rating-container -->
+                            </div><!-- End .product-body -->
+                        </div><!-- End .product -->
+                    </div><!-- End .owl-carousel -->
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+        {% include "footer.html" %}
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+    <div class="mobile-menu-container">
+        <div class="mobile-menu-wrapper">
+            <span class="mobile-menu-close"><i class="icon-close"></i></span>
+            
+            <nav class="mobile-nav">
+                <ul class="mobile-menu">
+                    <li class="active">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="category.html">Shop</a>
+                        <ul>
+                            <li><a href="category-list.html">Shop List</a></li>
+                            <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
+                            <li><a href="category.html">Shop Grid 3 Columns</a></li>
+                            <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
+                            <li><a href="category-boxed.html"><span>Shop Boxed No Sidebar<span class="tip tip-hot">Hot</span></span></a></li>
+                            <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
+                            <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
+                            <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="#">Lookbook</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="product.html" class="sf-with-ul">Product</a>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="elements-list.html">Elements</a>
+                    
+                    </li>
+                </ul>
+            </nav><!-- End .mobile-nav -->
+        </div><!-- End .mobile-menu-wrapper -->
+    </div><!-- End .mobile-menu-container -->
+
+    <!-- Sign in / Register Modal -->
+    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label for="singin-email">Username or email address *</label>
+                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="singin-password">Password *</label>
+                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>LOG IN</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
+                                                <label class="custom-control-label" for="signin-remember">Remember Me</label>
+                                            </div><!-- End .custom-checkbox -->
+
+                                            <a href="#" class="forgot-link">Forgot Your Password?</a>
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    <div class="form-choice">
+                                        <p class="text-center">or sign in with</p>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-g">
+                                                    <i class="icon-google"></i>
+                                                    Login With Google
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-f">
+                                                    <i class="icon-facebook-f"></i>
+                                                    Login With Facebook
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label for="register-email">Your email address *</label>
+                                            <input type="email" class="form-control" id="register-email" name="register-email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="register-password">Password *</label>
+                                            <input type="password" class="form-control" id="register-password" name="register-password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>SIGN UP</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
+                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    <div class="form-choice">
+                                        <p class="text-center">or sign in with</p>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-g">
+                                                    <i class="icon-google"></i>
+                                                    Login With Google
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login  btn-f">
+                                                    <i class="icon-facebook-f"></i>
+                                                    Login With Facebook
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+                </div><!-- End .modal-body -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->
+
+    <!-- Plugins JS File -->
+    <script src="{% static 'javascript/jquery.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'javascript/jquery.hoverIntent.min.js' %}"></script>
+    <script src="{% static 'javascript/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'javascript/superfish.min.js' %}"></script>
+    <script src="{% static 'javascript/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap-input-spinner.js' %}"></script>
+    <script src="{% static 'javascript/jquery.elevateZoom.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap-input-spinner.js' %}"></script>
+    <script src="{% static 'javascript/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Main JS File -->
+    <script src="{% static 'javascript/main.js' %}"></script>
+
+
+    <!-- change product image on hover  -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".small-image").hover(function() {
+                var newSrc = $(this).attr("src");
+            $(".main-image img").attr("src", newSrc);
+            });
+        });
+    </script>
+    <!-- ---- end change product image on hover ---->
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const inputElement = document.querySelector('input[name="quantity"]');
+          const minusButton = document.querySelector('.counter-button.minus');
+          const plusButton = document.querySelector('.counter-button.plus');
+      
+          minusButton.addEventListener("click", function () {
+            if (inputElement.value > 1) {
+              inputElement.value = parseInt(inputElement.value) - 1;
+            }
+          });
+      
+          plusButton.addEventListener("click", function () {
+            inputElement.value = parseInt(inputElement.value) + 1;
+          });
+        });
+      </script>
+    
+</body>
+
+
+
+<!-- molla/product.html  22 Nov 2019 09:55:05 GMT -->
+</html>

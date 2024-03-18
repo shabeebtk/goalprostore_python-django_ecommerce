@@ -1,0 +1,587 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- molla/checkout.html  22 Nov 2019 09:55:06 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Goal pro</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Goal pro">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/icons/site.html' %}">
+    <link rel="mask-icon" href="{% static 'images/icons/safari-pinned-tab.svg' %}" color="#666666">
+    <link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="{% static 'images/icons/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/owl-carousel/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/jquery. ntdown.css' %}">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skins/skin-demo-8.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demos/demo-8.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-top">
+                <div class="container">
+
+            <div class="header-middle sticky-header">
+                <div class="container">
+                    <div class="header-left">
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+
+                        <a href="{% url 'home' %}" class="logo">
+                            <img src="{% static 'images/Goal_pro_logo_1.png' %}" alt="Logo" width="105" height="25">
+                        </a>
+
+                        <nav class="main-nav">
+                            
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-left --> 
+                </div><!-- End .container -->
+            </div><!-- End .header-middle -->
+        </header><!-- End .header -->
+
+        
+        <main class="main">
+        	
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'shop' %}">Shop</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'cart' %}">cart</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+            	<div class="checkout">
+	                <div class="container">
+                        
+                        <!-- user address -->
+		                	<div class="row">
+		                		<div class="col-lg-6">
+		                			<h2 class="checkout-title">Select address</h2><!-- End .checkout-title -->
+                                    
+                                    
+                                    {% for address in all_address %}                              
+                                    <div style="position: relative;" class="summary">
+                                        <!-- address radio  -->
+                                        <form method="post">
+                                            <input style="position: absolute; left: 1em; top: 1em;" class="select_address" id="select_address{{ address.id }}" type="radio" value="{{address.id}}" name="selected_address">
+                                        </form>
+                                        <p>name : {{ address.name }}</p>
+                                        <p>address : {{ address.address }}</p>
+                                        <p>landmark : {{ address.landmark }}</p>
+                                        <p>place : {{ address.place }}, {{ address.city }}, {{ address.state }} {{ address.pincode }}</p>
+                                        <p>phone : +91{{ address.phone }}</p>
+                                    </div>
+                                    {% endfor %}
+
+                                    <!-- new address  -->
+                                    <div class="d-flex w-25 w-md-100">
+                                    <a class="mr-1" href="{% url 'user_address' %}"><button type="submit" class="btn btn-primary py-0">manage address <i class="fa-regular fa-pen-to-square" ></i></button></a>
+                                    <button id="loadButton" type="button" class="btn btn-primary py-0" data-toggle="modal" data-target="#exampleModalCenter">
+                                        Create new address   +
+                                    </button>
+                                </div>
+
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <form action="" method="post">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLongTitle">Create new address</h5>
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                  </button>
+                                                </div>
+                                                <div  class="modal-body p-4">
+                                                    
+                                                        {% csrf_token %}
+                
+                                                        {% if address_error %}
+                                                            <p>{{address_error}}</p>
+                                                        {% endif %}
+
+                                                    <div class="">
+                                                        <label>Name</label>
+                                                        <input name="address_name" type="text" class="form-control" >
+                                                    </div><!-- End .col-s -->
+                                                
+                                                <label>phone</label>
+                                                <input name="address_phone" type="number" class="form-control">
+                                            
+                                                <label>address</label>
+                                                <textarea class="w-100 form-control" name="address" id=""></textarea>
+                                                <label for="">landmark</label>
+                                                <input class="form-control" type="text" name="address_landmark" >
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>place</label>
+                                                        <input name="address_place" type="text" class="form-control" required>
+                                                    </div><!-- End .col-sm-6 -->
+                                                    <div class="col-sm-6">
+                                                        <label>Pincode</label>
+                                                        <input name="address_pincode" type="number" class="form-control" required>
+                                                    </div><!-- End .col-sm-6 -->
+                                                </div><!-- End .row -->
+                                            
+                                                
+
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label>City</label>
+                                                        <input name="address_city" type="text" class="form-control" required>
+                                                    </div><!-- End .col-sm-6 -->
+
+                                                    <div class="col-sm-6">
+                                                        <label>State</label>
+                                                        <input name="address_state" type="text" class="form-control" required>
+                                                    </div><!-- End .col-sm-6 -->
+                                                </div><!-- End .row -->
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <div class=""><button type="submit" class=" btn btn-dark">Save address</button></div>
+                                                    
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            
+
+
+    
+                                            
+                                        
+                                        
+	                					</div><!-- End .col-lg-9 -->
+                                    
+		                		<aside class="col-lg-6">
+		                			<div class="summary">
+		                				<h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+		                				<table class="table table-summary">
+		                					<thead>
+		                						<tr>
+		                							<th>Product</th>
+		                							<th>Total</th>
+		                						</tr>
+		                					</thead>
+
+		                					<tbody>
+                                                {% for item in checkout_items %}
+		                						<tr>
+		                							<td><a style="font-weight: 400;" href="#">{{ item.product }}</a>
+                                                    <p>quantity : {{ item.quantity }}</p>
+                                                    <p>size : {{ item.size }}</p>
+                                                    </td>
+		                							<td>₹{{ item.total_price }}</td>
+
+                                                    <!-- hidden inputs  -->
+                                                    <input class="d-none" type="text" name="order">
+                                                    <input class="d-none" type="text" name="order">
+                                                    <input class="d-none" type="text" name="order">
+		                						</tr>
+                                                {% endfor %}
+
+		                						
+		                						<tr class="summary-subtotal">
+		                							<td>Subtotal:</td>
+		                							<td>₹{{ sub_total }}</td>
+		                						</tr><!-- End .summary-subtotal -->
+		                						<tr>
+		                							<td>Shipping:</td>
+		                							<td>Free shipping</td>
+		                						</tr>
+                                                {% if coupon_applied %}
+                                                <tr>
+		                							<td>coupon applied</td>
+		                							<td class="text-success">-₹{{discount}}</td>
+		                						</tr>
+                                                {% endif %}
+		                						<tr class="summary-total">
+		                							<td>Total:</td>
+		                							<td>₹{{ cart_total }}</td>
+		                						</tr><!-- End .summary-total -->
+		                					</tbody>
+		                				</table><!-- End .table table-summary -->
+
+                                        
+                                        <div class="cart-discount mb-3">
+                                            <p style="font-weight: 400;">apply coupon</p>
+			            				<form action="" method="get">
+			            					<div class="input-group p-0">
+                                                {% if coupon_applied %}
+                                                    <input type="text" id="coupon_applied" class="form-control" value="{{coupon_applied}}" name="coupon_inp" required placeholder="coupon code">
+
+                                                {% else %}
+                                                    <input type="text" id="coupon_inpu" class="form-control" name="coupon_inp" required placeholder="coupon code">
+
+                                                {% endif %}
+				        						<div class="input-group-append p-0 m-0">
+													<button class="h-75 btn btn-outline-primary-2" id="coupon_btn" type="submit"><i class="icon-long-arrow-right"></i></button>
+												</div>
+			        						</div>
+			            				</form>
+                                        {% if messages %}
+                                        <ul class="messages">
+                                            {% for message in messages %}
+                                            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}> <p class="text-danger"> {{ message }} </p></li>
+                                            {% endfor %}
+                                        </ul>
+                                        {% endif %}
+
+                                        <p>Free coupons:</p>
+                                        {% for coupon in public_coupons %}
+                                            <button class="btn btn-outline-dark text-dark px-3 py-1 coupon_copy my-1" data-text="{{ coupon.coupon_code }}"  style="font-weight: 600;">{{ coupon.coupon_code }}</button>
+                                        {% endfor %}
+                                
+			            			</div>
+
+                                    <!-- payment_method  ----------->
+		                				<div class="accordion-summary" id="accordion-payment">
+
+										    <div class="card mb-1">
+										        <div class="card-header" id="heading-3">
+										            <h2 class="card-title">
+										                <input class="mx-2 selected_payment" type="radio" name="payment_method" value="cash on delivery"><label for="">cash on delivery</label>
+										            </h2>
+										        </div><!-- End .card-header -->
+										        <div id="collapse-3" class="collapse" aria-labelledby="heading-3" data-parent="#accordion-payment">
+										            <div class="card-body">Quisque volutpat mattis eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. 
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+
+                                            <div class="card mb-1">
+										        <div class="card-header" id="heading-3">
+										            <h2 class="card-title">
+										                <input class="mx-2 selected_payment" type="radio" name="payment_method" value="wallet"><label for="">wallet</label>
+										            </h2>
+										        </div><!-- End .card-header -->
+										        <div id="collapse-3" class="" aria-labelledby="heading-3" data-parent="#accordion-payment">
+										            <div class="card-body">balance ₹{{wallet_balance.balance}} 
+                                                        {% if wallet_balance.balance < cart_total %}
+                                                        <span class="text-danger"> <i class="fa-solid fa-circle-info"></i>low balance</span>
+                                                        {% endif %}
+                                                        
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+                                            
+										    <div class="card">
+										        <div class="card-header" id="heading-4">
+										            <h2 class="card-title">
+										                <input class="mx-2 selected_payment" name="payment_method" type="radio" value="razorpay"><label for="">razorpay</label>
+										            </h2>
+										        </div><!-- End .card-header -->
+										        <div id="collapse-4" class="collapse" aria-labelledby="heading-4" data-parent="#accordion-payment">
+										            <div class="card-body">
+										                Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum.
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->				    
+										</div><!-- End .accordion -->
+
+                                        <!-- sending order details  -->
+                                        <form action="{% url 'order' %}" method="post">
+                                            {% csrf_token %}
+                                            <input type="hidden" id="selected_address_id" class="" name="selected_address">
+                                            <input type="hidden" id="selected_payment" name="payment_method">
+                                            <input type="hidden" id="coupon_val" name="coupon_val" value=""> 
+
+                                            <div id="error-message" style="display: none; color: red;">Please select an address and payment method.</div>
+		                				    <button type="submit" id="place_order_btn" class="btn btn-success w-100">place order
+		                				</button>
+                                        <p class="text-danger text-center" id="select_message">select address and payment method to order</p>
+                                        <button type="button" id="razor_btn" style="display: none;" class="btn btn-secondary w-100">pay Now</button>
+                                    </form>
+                      
+		                			</div><!-- End .summary -->
+		                		</aside><!-- End .col-lg-3 -->
+		                	</div><!-- End .row -->
+            			
+	                </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+    
+ 
+
+    <!-- Sign in / Register Modal -->
+    <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label for="singin-email">Username or email address *</label>
+                                            <input type="text" class="form-control" id="singin-email" name="singin-email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="singin-password">Password *</label>
+                                            <input type="password" class="form-control" id="singin-password" name="singin-password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>LOG IN</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="signin-remember">
+                                                <label class="custom-control-label" for="signin-remember">Remember Me</label>
+                                            </div><!-- End .custom-checkbox -->
+
+                                            
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <form action="#">
+                                        <div class="form-group">
+                                            <label for="register-email">Your email address *</label>
+                                            <input type="email" class="form-control" id="register-email" name="register-email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="register-password">Password *</label>
+                                            <input type="password" class="form-control" id="register-password" name="register-password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>SIGN UP</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="register-policy" required>
+                                                <label class="custom-control-label" for="register-policy">I agree to the <a href="#">privacy policy</a> *</label>
+                                            </div><!-- End .custom-checkbox -->
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    <div class="form-choice">
+                                        <p class="text-center">or sign in with</p>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login btn-g">
+                                                    <i class="icon-google"></i>
+                                                    Login With Google
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                            <div class="col-sm-6">
+                                                <a href="#" class="btn btn-login  btn-f">
+                                                    <i class="icon-facebook-f"></i>
+                                                    Login With Facebook
+                                                </a>
+                                            </div><!-- End .col-6 -->
+                                        </div><!-- End .row -->
+                                    </div><!-- End .form-choice -->
+                                </div><!-- .End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+                </div><!-- End .modal-body -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->
+   
+
+     <!-- Razorpay's Javascript code. -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+    
+    var options = {
+      key: "{{ razorpay_merchant_key }}",
+
+      amount: "{{ razorpay_amount }}",
+      currency: "{{ currency }}",
+       
+      name: "Goalpro Store",
+       
+      order_id: "{{ razorpay_order_id }}",
+      callback_url: "{{ callback_url }}",
+
+    };
+
+    var rzp1 = new Razorpay(options);
+    
+    document.getElementById("razor_btn").onclick = function (e) {
+      rzp1.open();
+      e.preventDefault();
+    };
+
+    // After payment success
+    
+  </script>
+        
+
+   <!-- place order send address coupon payment to django -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    
+    $(document).ready(function() {
+        var selected_address = $('input[name="selected_address"]:checked').val()
+        var select_payment = $('[name="selected_payment"]').val();
+        var selectedValue = ''
+        var payment = ''
+
+        hidden_payment = $('#selected_payment')
+        hidden_address = $('#selected_address_id')
+        hidden_coupon = $('#coupon_val')    
+        
+
+        $('input[name="selected_address"]').on('click', function(){
+            address = $('input[name="selected_address"]').val();
+            var csrfToken = $('input[name=csrfmiddlewaretoken]').val();
+            $.ajax({
+                url : '{% url "select_address" %}',
+                method: 'POST',
+                headers : {'X-CSRFToken': csrfToken},
+                data: {
+                    'address_id': address
+                },
+                success : function(data){
+                    if (data.success) {
+                        console.log('success')
+                    } else {
+                        console.log('banner failed')
+                    }
+                },
+                error: function () {
+                    console.log('unable to update banner')
+                }
+            })
+        });
+        
+        $(document).on('change', '.select_address', function() {
+            var selectedValue = $(this).val(); 
+            $(hidden_address).val(selectedValue); 
+
+        });
+
+        $('.select_address, .selected_payment').on('change', function () {
+            var selectedAddress = $("input[name='selected_address']:checked").val();
+            var selectedPayment = $("input[name='payment_method']:checked").val();
+
+            if (selectedAddress && selectedPayment) {
+                $('#razor_btn').prop('disabled', false);
+            } else {
+                $('#razor_btn').prop('disabled', true);
+            }
+        });
+
+        $(document).on('change', '.selected_payment', function() {
+            var payment = $(this).val(); 
+            $(hidden_payment).val(payment); 
+
+            if (payment === 'razorpay') {
+                $('#place_order_btn').hide()
+                $('#razor_btn').css("display", "block")
+                $('#select_message').css("display", "none")
+            }else{  
+                $('#place_order_btn').show()
+                $('#razor_btn').css("display", "none")
+                $('#select_message').css("display", "none")
+            }
+        });
+
+
+        $('#place_order_btn').click(function(event) {
+            var coupon_applied = $('#coupon_applied').val()
+
+            hidden_address.attr('value', selected_address)
+            hidden_payment.attr('value', select_payment)
+            $('#coupon_val').val(coupon_applied);
+
+            if (hidden_address === '' || hidden_payment === '') {
+                event.preventDefault();
+                alert("Please select address, payment method");
+            };
+
+        });
+
+        if (selectedValue == '' || payment == ''){
+            $('#place_order_btn').hide()
+            $('#razor_btn').css("display", "none")
+        }
+        else{
+            $('#select_message').css("display", "none")
+        }
+
+
+        function copyTextToClipboard() {
+            // Get the text of the button
+            const buttonText = $(this).data("text");
+    
+            // Create a temporary input element to copy the text
+            const tempInput = $("<input>");
+            $("body").append(tempInput);
+            tempInput.val(buttonText).select();
+            document.execCommand("copy");
+            tempInput.remove();
+    
+            // Deselect the button (optional)
+            $(this).animate({ opacity: '20%' }, 1000);
+            $(this).animate({ opacity: '100%' }, 300);
+            
+
+        }
+
+        $(".coupon_copy").click(copyTextToClipboard);
+
+        
+    });
+    </script>
+
+    
+    <!-- Main JS File -->
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+
+<!-- molla/checkout.html  22 Nov 2019 09:55:06 GMT -->
+</html>

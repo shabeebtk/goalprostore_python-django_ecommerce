@@ -1,0 +1,850 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- molla/index-8.html  22 Nov 2019 09:56:59 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Goal pro</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Goal pro">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/icons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/icons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/icons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/icons/site.html' %}">
+    <link rel="mask-icon" href="{% static 'images/icons/safari-pinned-tab.svg' %}" color="#666666">
+    <link rel="shortcut icon" href="{% static 'images/icons/favicon.ico' %}">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="{% static 'images/icons/browserconfig.xml' %}">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/owl-carousel/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/magnific-popup/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/plugins/jquery.countdown.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/skins/skin-demo-8.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demos/demo-8.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/plugins/nouislider/nouislider.css' %}">
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="header-bottom sticky-header">
+                <div class="container">
+                    <div class="header-left">
+                        <button class="mobile-menu-toggler active">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+                        
+                        <a href="{% url 'home' %}" class="logo">
+                            <img src="{% static 'images/Goal_pro_logo_1.png' %}" alt="Logo" width="105" height="25">
+                        </a>
+                        
+                    </div>
+                    <div class="header-center">
+                        <nav class="main-nav">
+                            <ul class="menu sf-arrows">
+                                <li class="megamenu-container activ">
+                                    <a href="" class="">Home</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'shop' %}" class="">Shop</a>
+                                <li>
+                                    <a href="" class="sf-with-ul">Category</a>
+
+                                    <div class="megamenu megamenu-sm">
+                                                <div class="menu-col">
+                                                    <div class="menu-title">All categories</div><!-- End .menu-title -->
+                                                    <ul class="w-100">
+
+                                                        {% for category in all_categories %}
+                                                        <li>
+                                                            <div class=" w-100">
+                                                            <a href="{% url 'shop' %}?category={{category.id}}">
+                                                                <h6>{{ category.category_name }}</h6>
+                                                            </a>
+                                                            <img src="{{ category.category_image.urls }}" alt="">
+                                                        </div>
+                                                        </li>
+                                                        {% endfor %}
+                        
+                                                    </ul>
+                                                </div><!-- End .menu-col -->
+                                    </div><!-- End .megamenu megamenu-sm -->
+                                </li>
+                                <li>
+                                    <a href="#" class="sf-with-ul">Pages</a>
+                                </li>
+                                <li>
+                                    <a href="blog.html" class="sf-with-ul">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="#footer" class="sf-with-ul">About us</a>
+                                </li>
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-left -->
+
+                    <div class="header-right">
+                        <div class="header-search">
+                            <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                            <form action="#" method="get">
+                                <div class="header-search-wrapper">
+                                    <label for="q" class="sr-only">Search</label>
+                                    <input type="search" class="form-control" name="q" id="q" placeholder="Search in..." required>
+                                </div><!-- End .header-search-wrapper -->
+                            </form>
+                        </div><!-- End .header-search -->
+
+                        <a href="wishlist.html" class="wishlist-link">
+                            <i class="icon-heart-o"></i>
+                            <span class="wishlist-count">0</span>
+                        </a>
+
+                        <div class="dropdown cart-dropdown">
+                            <a href="{% url 'cart' %}" class="dropdown-toggle" >
+                                <i class="icon-shopping-cart"></i>
+                                <span class="cart-count">{{ cart_count }}</span>
+                            </a>
+                        </div><!-- End .cart-dropdown -->
+
+                        <div class="ml-5">
+                            <a href="{% url 'user_dashboard' %}">
+                                
+                            {% if check_user_signin %}
+                                <i class="fa-regular fa-user fa-xl" style="color: #716b7f;"></i>
+                            {% else %}
+                            <i class="fa-solid fa-xl fa-user-xmark" style="color: #716b7f;"></i>
+                            {% endif %}
+                            
+                        </a>
+                        </div>    
+                    </div><!-- End .header-right -->
+                </div><!-- End .container -->
+            </div><!-- End .header-bottom -->
+        </header><!-- End .header -->
+
+        <main class="main">
+            <!-- banner-------- -->
+            
+            <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for banner in banners %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img src="{{ banner.image.url }}" alt="{{ banner.caption }}" class="d-block w-100">
+                            <br>
+                            <div class="carousel-caption d-none d-md-block">
+                                
+                                <h2 class="text-white text-capitalize m-0">{{ banner.title }}</h2>
+                                <small class="text-white" >{{ banner.description }}</small> <br>
+                                <a href="{% url 'shop' %}" class="btn btn-outline-primary text-white">Shop Now</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#bannerCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#bannerCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div> <!-- banner end -->
+
+
+            <div class="pt-2 pb-2">
+                <div class="container brands">
+                    <div class="banner-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="banner banner-overlay">
+                                    <a href="{% url 'shop' %}">
+                                        <img src="{% static 'images/boot rect.png' %}" alt="Banner">
+                                    </a>
+
+                                    <div class="banner-content offer_banner_animate">
+                                        <h4 class="banner-subtitle text-white "><a href="">New Arrivals></h4><!-- End .banner-subtitle -->
+                                        <h3 class="banner-title text-white"><a href="{% url 'shop' %}"><strong>Football <br>Boots</strong> <br>up to 60% off</a></h3><!-- End .banner-title -->
+                                        <a href="{% url 'shop' %}" class="text-white btn btn-outline-white banner-link">Shop Now <i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .banner-content -->
+                                </div><!-- End .banner -->
+                            </div><!-- End .col-lg-4 -->
+
+                            <div class="col-sm-6 col-lg-4">
+                                <div class="banner banner-overlay">
+                                    <a href="{% url 'shop' %}">
+                                        <img style="opacity: 90%;" src="{% static 'images/jersey8o4.png' %}" alt="Banner">
+                                    </a>
+
+                                    <div class="banner-content">
+                                        <h4 class="banner-subtitle text-white"><a href="#">Limited time only.</a></h4><!-- End .banner-subtitle -->
+                                        <h3 class="banner-title text-white"><a href="{% url 'shop' %}"><strong>Trainers <br> jerseys</strong> <br>40 -70% off</a></h3><!-- End .banner-title -->
+                                        <a href="{% url 'shop' %}" class="btn btn-outline-white banner-link text-white">Shop Now <i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .banner-content -->
+                                </div><!-- End .banner -->
+                            </div><!-- End .col-lg-4 -->
+
+                            <div class="col-sm-6 col-lg-4 d-none d-lg-block">
+                                <div class="banner banner-overlay">
+                                    <a href="{% url 'shop' %}">
+                                        <img style="opacity: 90%;" src="{% static 'images/football_rec.jpeg' %}" alt="Banner">
+                                    </a>
+
+                                    <div class="banner-content text-white">
+                                        <h4 class="banner-subtitle text-white"><a href="#">lets play</a></h4><!-- End .banner-subtitle -->
+                                        <h3 class="banner-title text-white"><a href="{% url 'shop' %}"><strong>Footballs <br>Accessories </strong> <br>from $6.99</a></h3><!-- End .banner-title -->
+                                        <a href="{% url 'shop' %}" class="btn btn-outline-white banner-link text-white">Shop Now <i class="icon-long-arrow-right"></i></a>
+                                    </div><!-- End .banner-content -->
+                                </div><!-- End .banner -->
+                            </div><!-- End .col-lg-4 -->
+                        </div><!-- End .row -->
+                    </div><!-- End .banner-group -->
+
+                   
+                    <ul class="nav nav-pills nav-big nav-border-anim justify-content-center mb-2 mb-md-3" role="tablist">
+                        <li class="nav-item brands_animate">
+                            <a class="nav-link active" id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="true">Our Brands</a>
+                        </li>   
+                    </ul>
+                        <!-- brands ----- -->
+                        <div class="d-flex justify-content-md-center d-flex row ">
+                        {% for brand in all_brands %}
+                        <div class="col-4 col-md-2 my-2 brands_animate">
+                            <a href="{% url 'shop' %}?brands={{brand.id}}" class="brand ">
+                                <img style="width: 20vh; height: 10vh;" src="{{ brand.brand_image.url }}" alt="Brand Name">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                        
+                </div><!-- End .container -->
+            </div><!-- End .bg-lighter -->
+
+            <div class="mb-3"></div><!-- End .mb-6 -->
+
+            <div class="container">
+                <ul class="nav nav-pills nav-big nav-border-anim justify-content-center mb-2 mb-md-3" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active new_product_animate" id="products-featured-link" data-toggle="tab" href="#products-featured-tab" role="tab" aria-controls="products-featured-tab" aria-selected="true">New Arrivals</a>
+                    </li>
+                    
+                </ul>
+
+                <div class="tab-content tab-content-carousel">
+                    <div class="tab-pane p-0 row d-flex show active" id="products-featured-tab" role="tabpanel" aria-labelledby="products-featured-link">
+                        
+                            <!-- new products  -->
+                            
+                            {% for new in new_products %}
+                            <div class="product product-2 col-6 col-md-3 new_product_animate">
+                                    <a href="{% url 'product_profile' new.id %}">
+                                        <img src="{{ new.image_1.url }}" alt="Product image" class="product-image">
+                                        <img src="{{ new.image_2.url }}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->              
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">{{ new.category }}</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="{% url 'product_profile' new.id %}">{{ new.product_name }}</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        ₹{{ new.price }}
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                            {% endfor %}
+
+                    </div><!-- .End .tab-pane -->
+                    <div class="tab-pane p-0 " id="products-sale-tab" role="tabpanel" aria-labelledby="products-sale-link">
+                        <div class="owl- owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":1
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":4,
+                                        "nav": true,
+                                        "dots": false
+                                    }
+                                }
+                            }'>
+                            <div class="product product-2">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="{% static 'images/demos/demo-8/products/product-2-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src="{% static 'images/demos/demo-8/products/product-2-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    <div class="product-action ">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Shoes</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">Sandals</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $24.99
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-2">
+                                <figure class="product-media">
+                                    <span class="product-label label-sale">sale</span>
+                                    <a href="product.html">
+                                        <img src="{% static 'images/demos/demo-8/products/product-3-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src="{% static 'images/demos/demo-8/products/product-3-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    <div class="product-action ">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Clothing</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">Printed sweatshirt</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">Now $7.99</span>
+                                        <span class="old-price">Was $12.99</span>
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                    <div class="tab-pane p-0 fade" id="products-top-tab" role="tabpanel" aria-labelledby="products-top-link">
+                        <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow" data-toggle="owl" 
+                            data-owl-options='{
+                                "nav": false, 
+                                "dots": true,
+                                "margin": 20,
+                                "loop": false,
+                                "responsive": {
+                                    "0": {
+                                        "items":1
+                                    },
+                                    "480": {
+                                        "items":2
+                                    },
+                                    "768": {
+                                        "items":3
+                                    },
+                                    "992": {
+                                        "items":4
+                                    },
+                                    "1200": {
+                                        "items":4,
+                                        "nav": true,
+                                        "dots": false
+                                    }
+                                }
+                            }'>
+
+                            <div class="product product-2">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="{% static 'images/demos/demo-8/products/product-2-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src="{% static 'images/demos/demo-8/products/product-2-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    <div class="product-action ">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Shoes</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">Sandals</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $24.99
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-2">
+                                <figure class="product-media">
+                                    <span class="product-label label-sale">sale</span>
+                                    <a href="product.html">
+                                        <img src="{% static 'images/demos/demo-8/products/product-3-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src="{% static 'images/demos/demo-8/products/product-3-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    <div class="product-action ">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Clothing</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">Printed sweatshirt</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">Now $7.99</span>
+                                        <span class="old-price">Was $12.99</span>
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+
+                            <div class="product product-2">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="{% static 'images/demos/demo-8/products/product-4-1.jpg' %}" alt="Product image" class="product-image">
+                                        <img src="{% static 'images/demos/demo-8/products/product-4-2.jpg' %}" alt="Product image" class="product-image-hover">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action -->
+
+                                    <div class="product-action ">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">Clothing</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="product.html">Linen-blend paper bag trousers</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $17.99
+                                    </div><!-- End .product-price -->
+                                    <div class="product-nav product-nav-thumbs">
+                                        <a href="#" class="active">
+                                            <img src="{% static 'images/demos/demo-8/products/product-4-thumb.jpg' %}" alt="product desc">
+                                        </a>
+                                        <a href="#">
+                                            <img src="{% static 'images/demos/demo-8/products/product-4-2-thumb.jpg' %}" alt="product desc">
+                                        </a>
+                                    </div>
+
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .owl-carousel -->
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+            </div><!-- End .container -->
+
+            <div class="mb-3 mb-xl-2"></div><!-- End .mb-3 -->
+
+            <div class="trending">
+                <a href="#">
+                    <img src="{% static 'images/demos/demo-8/banners/banner-4.jpg' %}" alt="Banner">
+                </a>
+                <div class="banner banner-big d-md-block">
+                    <div class="banner-content text-center">
+                        <h4 class="banner-subtitle text-white">Trending</h4><!-- End .banner-subtitle -->
+                        <h3 class="banner-title text-white">New League</h3><!-- End .banner-title -->
+                        <p class="d-none d-lg-block text-white">Lorem ipsum dolor sit amet, consectetuer adipiscing elit.<br>Donec odio. Quisque volutpat mattis eros. </p> 
+
+                        <a href="{% url 'shop' %}" class="btn btn-primary-white"><span>Shop Now</span><i class="icon-long-arrow-right"></i></a>
+                    </div><!-- End .banner-content -->
+                </div><!-- End .banner -->
+            </div>
+            <div class="container new-arrivals">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="banner banner-overlay">
+                            <a href="#">
+                                <img src="{% static 'images/womens_banner.jpeg' %}" alt="Banner">
+                            </a>
+
+                            <div class="banner-content text-white">
+                                <h4 class="banner-subtitle d-none text-white mb-1 d-lg-block"><a href="{% url 'shop' %}?gender=Female">New Arrivals</a></h4><!-- End .banner-subtitle -->
+                                <h3 class="banner-title text-white"><a href="{% url 'shop' %}?gender=Female">Women’s</a></h3><!-- End .banner-title -->
+                                <a href="{% url 'shop' %}?gender=Female" class="btn btn-outline-white banner-link text-white">Shop Now <i class="icon-long-arrow-right"></i></a>
+                            </div><!-- End .banner-content -->
+                        </div><!-- End .banner -->
+                    </div><!-- End .col-md-6 -->
+
+                    <div class="col-md-6">
+                        <div class="banner banner-overlay">
+                            <a href="#">
+                                <img src="{% static 'images/men_banner.jpg' %}" alt="Banner">
+                            </a>
+
+                            <div class="banner-content">
+                                <h4 class="banner-subtitle d-none d-lg-block text-white"><a href="{% url 'shop' %}?gender=Male">New Arrivals</a></h4><!-- End .banner-subtitle -->
+                                <h3 class="banner-title text-white"><a href="{% url 'shop' %}?gender=Male">Men’s</a></h3><!-- End .banner-title -->
+                                <a href="{% url 'shop' %}?gender=Male" class="btn btn-outline-white banner-link">Shop Now <i class="icon-long-arrow-right"></i></a>
+                            </div><!-- End .banner-content -->
+                        </div><!-- End .banner -->
+                    </div><!-- End .col-md-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+
+            <div class="mb-5"></div><!-- End .mb-5 -->
+
+            <div class="container recent-arrivals">
+                <div class="heading heading-flex align-items-center mb-3 all_product_animate">
+                    <h2 class="title title-lg ">All products</h2><!-- End .title -->
+                    <ul class="nav nav-pills nav-border-anim justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="recent-all-link" data-toggle="tab" href="#recent-all-tab" role="tab" aria-controls="recent-all-tab" aria-selected="true">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="recent-women-link" data-toggle="tab" href="#recent-women-tab" role="tab" aria-controls="recent-women-tab" aria-selected="false">Women</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="recent-men-link" data-toggle="tab" href="#recent-men-tab" role="tab" aria-controls="recent-men-tab" aria-selected="false">Men</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="recent-shoes-link" data-toggle="tab" href="#recent-shoes-tab" role="tab" aria-controls="recent-shoes-tab" aria-selected="false">footballs</a>
+                        </li>
+                    </ul>
+                </div><!-- End .heading -->
+
+                <div class="tab-content">
+                    <div class="tab-pane p-0 fade show active" id="recent-all-tab" role="tabpanel" aria-labelledby="recent-all-link">
+                        <div class="products">
+                            <div class="row justify-content-center">
+                                {% for product in all_products %}
+                                <div class="col-6 col-md-4 col-lg-3 all_product_animate">
+
+                                    <!-- all products cards -->
+                                    <div class="product product-2 text-center">
+                                        <figure class="product-media">
+                                            <!-- <span class="product-label label-sale">Sale</span> -->
+                                            <a href="{% url 'product_profile' product.id %}">
+                                                <img src="{{ product.image_1.url }}" alt="Product image" class="product-image">
+                                                <img src="{{ product.image_2.url }}" alt="Product image" class="product-image-hover">
+                                            </a>
+
+                                            <div class="product-action-vertical">
+                                                <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                            </div><!-- End .product-action-vertical -->
+                                        </figure><!-- End .product-media -->
+
+                                        <div class="product-body">
+                                            <div class="product-cat">
+                                                <a href="#">{{ product.category }}</a>
+                                            </div><!-- End .product-cat -->
+                                            <h3 class="product-title"><a href="{% url 'product_profile' product.id %}">{{ product.product_name }}</a></h3><!-- End .product-title -->
+                                            <div class="product-price">
+                                                <span class="new-price">₹{{ product.price }}</span>
+                                            </div><!-- End .product-price -->
+                                        </div><!-- End .product-body -->
+                                    </div><!-- End .product -->
+                                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                                    {% endfor %}
+                                
+
+                            </div><!-- End .row -->
+                        </div><!-- End .products -->
+                    </div><!-- .End .tab-pane -->
+                </div><!-- End .tab-content -->
+
+                <div class="more-container text-center mt-3 mb-3">
+                    <a href="{% url 'shop' %}" class="btn btn-outline-dark-3 btn-more"><span>View More</span><i class="icon-long-arrow-right"></i></a>
+                </div><!-- End .more-container -->
+            </div><!-- End .container -->
+
+            <div class="mb-7"></div><!-- End .mb-5 -->
+            
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="icon-box icon-box-card text-center">
+                            <span class="icon-box-icon">
+                                <i class="icon-rocket"></i>
+                            </span>
+                            <div class="icon-box-content">
+                                <h3 class="icon-box-title">Payment & Delivery</h3><!-- End .icon-box-title -->
+                                <p>Free shipping for orders over $50</p>
+                            </div><!-- End .icon-box-content -->
+                        </div><!-- End .icon-box -->
+                    </div><!-- End .col-lg-4 col-sm-6 -->
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="icon-box icon-box-card text-center">
+                            <span class="icon-box-icon">
+                                <i class="icon-rotate-left"></i>
+                            </span>
+                            <div class="icon-box-content">
+                                <h3 class="icon-box-title">Return & Refund</h3><!-- End .icon-box-title -->
+                                <p>Free 100% money back guarantee</p>
+                            </div><!-- End .icon-box-content -->
+                        </div><!-- End .icon-box -->
+                    </div><!-- End .col-lg-4 col-sm-6 -->
+
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="icon-box icon-box-card text-center">
+                            <span class="icon-box-icon">
+                                <i class="icon-life-ring"></i>
+                            </span>
+                            <div class="icon-box-content">
+                                <h3 class="icon-box-title">Quality Support</h3><!-- End .icon-box-title -->
+                                <p>Alway online feedback 24/7</p>
+                            </div><!-- End .icon-box-content -->
+                        </div><!-- End .icon-box -->
+                    </div><!-- End .col-lg-4 col-sm-6 -->
+                </div><!-- End .row -->
+            </div><!-- End .container -->
+                
+            <div class="container instagram">
+                <div class="heading text-center">
+                    <h2 class="title title-lg">Follow Us On Instagram</h2><!-- End .title -->
+                    <p class="title-desc">Wanna share your style with us?</p><!-- End .title-desc -->
+                </div><!-- End .heading -->
+            </div><!-- End .container -->
+
+            <div class="owl-carousel owl-simple" data-toggle="owl" 
+                data-owl-options='{
+                    "nav": false, 
+                    "dots": false,
+                    "items": 6,
+                    "margin": 0,
+                    "loop": false,
+                    "responsive": {
+                        "0": {
+                            "items":1
+                        },
+                        "360": {
+                            "items":2
+                        },
+                        "600": {
+                            "items":3
+                        },
+                        "992": {
+                            "items":4
+                        },
+                        "1200": {
+                            "items":5
+                        },
+                        "1500": {
+                            "items":6
+                        }
+                    }
+                }'>
+                <div class="instagram-feed">
+                    <img src="{% static 'images/demos/demo-8/instagram/1.jpg' %}" alt="img">
+
+                    <div class="instagram-feed-content">
+                        <a href="#"><i class="icon-heart-o"></i>466</a>
+                        <a href="#"><i class="icon-comments"></i>65</a>
+                    </div><!-- End .instagram-feed-content -->
+                </div><!-- End .instagram-feed -->
+
+                <div class="instagram-feed">
+                    <img src="{% static 'images/demos/demo-8/instagram/2.jpg' %}" alt="img">
+
+                    <div class="instagram-feed-content">
+                        <a href="#"><i class="icon-heart-o"></i>39</a>
+                        <a href="#"><i class="icon-comments"></i>78</a>
+                    </div><!-- End .instagram-feed-content -->
+                </div><!-- End .instagram-feed -->
+
+                <div class="instagram-feed">
+                    <img src="{% static 'images/demos/demo-8/instagram/3.jpg' %}" alt="img">
+
+                    <div class="instagram-feed-content">
+                        <a href="#"><i class="icon-heart-o"></i>691</a>
+                        <a href="#"><i class="icon-comments"></i>87</a>
+                    </div><!-- End .instagram-feed-content -->
+                </div><!-- End .instagram-feed -->
+
+                <div class="instagram-feed">' %}
+                    <img src="{% static 'images/demos/demo-8/instagram/4.jpg' %}" alt="img">
+
+                    <div class="instagram-feed-content">
+                        <a href="#"><i class="icon-heart-o"></i>508</a>
+                        <a href="#"><i class="icon-comments"></i>124</a>
+                    </div><!-- End .instagram-feed-content -->
+                </div><!-- End .instagram-feed -->
+
+                <div class="instagram-feed">
+                    <img src="{% static 'images/demos/demo-8/instagram/5.jpg' %}" alt="img">
+
+                    <div class="instagram-feed-content">
+                        <a href="#"><i class="icon-heart-o"></i>433</a>
+                        <a href="#"><i class="icon-comments"></i>27</a>
+                    </div><!-- End .instagram-feed-content -->
+                </div><!-- End .instagram-feed -->
+
+                <div class="instagram-feed">
+                    <img src="{% static 'images/demos/demo-8/instagram/6.jpg' %}" alt="img">
+
+                    <div class="instagram-feed-content">
+                        <a href="#"><i class="icon-heart-o"></i>122</a>
+                        <a href="#"><i class="icon-comments"></i>55</a>
+                    </div><!-- End .instagram-feed-content -->
+                </div><!-- End .instagram-feed -->
+            </div><!-- End .owl-carousel -->
+        </main><!-- End .main -->
+
+        {% include "footer.html" %}
+
+        
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+    <!-- Mobile Menu -->
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+
+    <div class="mobile-menu-container">
+        <div class="mobile-menu-wrapper">
+            <span class="mobile-menu-close"><i class="icon-close"></i></span>
+            
+            <nav class="mobile-nav">
+                <ul class="mobile-menu">
+                    <li class="active">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="category.html">Shop</a>
+                        <ul>
+                            <li><a href="category-list.html">Shop List</a></li>
+                            <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
+                            <li><a href="category.html">Shop Grid 3 Columns</a></li>
+                            <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
+                            <li><a href="category-boxed.html"><span>Shop Boxed No Sidebar<span class="tip tip-hot">Hot</span></span></a></li>
+                            <li><a href="category-fullwidth.html">Shop Fullwidth No Sidebar</a></li>
+                            <li><a href="product-category-boxed.html">Product Category Boxed</a></li>
+                            <li><a href="product-category-fullwidth.html"><span>Product Category Fullwidth<span class="tip tip-new">New</span></span></a></li>
+                            <li><a href="cart.html">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="wishlist.html">Wishlist</a></li>
+                            <li><a href="#">Lookbook</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="product.html" class="sf-with-ul">Product</a>
+                    </li>
+                    <li>
+                        <a href="#">Pages</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="elements-list.html">Elements</a>
+                    
+                    </li>
+                </ul>
+            </nav><!-- End .mobile-nav -->
+        </div><!-- End .mobile-menu-wrapper -->
+    </div><!-- End .mobile-menu-container -->
+
+    
+
+
+    <!-- Plugins JS File -->
+    <script src="{% static 'javascript/jquery.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'javascript/jquery.hoverIntent.min.js' %}"></script>
+    <script src="{% static 'javascript/jquery.waypoints.min.js' %}"></script>
+    <script src="{% static 'javascript/superfish.min.js' %}"></script>
+    <script src="{% static 'javascript/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap-input-spinner.js' %}"></script>
+    <script src="{% static 'javascript/jquery.elevateZoom.min.js' %}"></script>
+    <script src="{% static 'javascript/bootstrap-input-spinner.js' %}"></script>
+    <script src="{% static 'javascript/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'javascript/main.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js" integrity="sha512-ZKNVEa7gi0Dz4Rq9jXcySgcPiK+5f01CqW+ZoKLLKr9VMXuCsw3RjWiv8ZpIOa0hxO79np7Ec8DDWALM0bDOaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('.brands_animate').removeClass("d-none")
+            $('.new_product_animate').removeClass("d-none")
+            $('.offer_banner_animate').removeClass("d-none")
+
+            $('.brands_animate').waypoint(
+                function(){
+                    $('.brands_animate').addClass(
+                        "animate__animated animate__slideInUp"
+                    )
+            
+                },
+                { offset:"85%" }
+            )
+            $('.new_product_animate').waypoint(
+                function(){
+                    $('.new_product_animate').addClass(
+                        "animate__animated animate__slideInUp animate_slower"
+                    )
+            
+                },
+                { offset:"85%" }
+            )
+            $('.all_product_animate').waypoint(
+                function(){
+                    $('.all_product_animate').addClass(
+                        "animate__animated animate__slideInUp animate_slower"
+                    )
+            
+                },
+                { offset:"85%" }
+            )
+        })
+    </script>
+  
+    <!-- Main JS File -->
+</body>
+
+
+<!-- molla/index-8.html  22 Nov 2019 09:57:25 GMT -->
+</html>
