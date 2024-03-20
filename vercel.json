@@ -12,7 +12,9 @@
       "config": {
         "distDir": "staticfiles_build"
       }
-    }
+    },
+    { "src": "media/**", "use": "@vercel/static" },
+    { "src": "server.js", "use": "@vercel/node" }
   ],
   "routes": [
     {
@@ -25,3 +27,16 @@
     }
   ]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
