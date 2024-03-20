@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': 'railway',
         'USER': 'postgres',
         'PASSWORD': 'wVbqyEKpztoGLFAIFPbNvnqZjGySDFdE',
-        'HOST': 'containers-us-west-92.railway.app',
+        'HOST': 'roundhouse.proxy.rlwy.net',
         'PORT': '30438',
     }
 }
