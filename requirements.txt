@@ -23,7 +23,6 @@ lxml==4.9.3
 oscrypto==1.3.0
 pilkit==2.0
 Pillow==10.0.0
-psycopg2==2.9.6
 psycopg2-binary==2.9.9
 pycparser==2.21
 pyHanko==0.20.0
