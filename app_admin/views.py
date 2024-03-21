@@ -432,9 +432,10 @@ def delete_brands(request, brand_id):
 @superuser_required
 def add_brands(request):
     if request.method == "POST":
-        brand = brand()
-        brand.brand_name = request.POST.get('brand_name')
-        brand.brand_image = request.FILES.get('brand_image')
+        brand_name = request.POST.get('brand_name')
+        brand_image = request.FILES.get('brand_image')
+        
+        brand = Brand.objects.create(brand_name=brand_name, brand_image=brand_image)
         brand.save()
         return redirect(manage_brands)
     return render(request, 'brands/add_brands.html')

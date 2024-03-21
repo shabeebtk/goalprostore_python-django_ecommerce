@@ -35,10 +35,10 @@
           <a href="{% url 'manage_products' %}" class="list-group-item list-group-item-action py-2 ripple">
             <i class="fas fa-chart-pie fa-fw me-3"></i><span>Products</span>
           </a>
-          <a href="{% url 'manage_category' %}" class="list-group-item list-group-item-action py-2 ripple active"><i
+          <a href="{% url 'manage_category' %}" class="list-group-item list-group-item-action py-2 ripple"><i
             class="fab fa-buromobelexperte fa-fw me-3"></i><span>Categories</span>
           </a>
-          <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+          <a href="#" class="list-group-item list-group-item-action py-2 ripple active"><i
             class="fas fa-circle-check fa-fw me-3"></i><span>Brands</span>
           </a>
           <a href="{% url 'manage_coupons' %}" class="list-group-item list-group-item-action py-2 ripple"><i
@@ -179,16 +179,16 @@
     <div class="d-flex flex-column align-items-center pt-5" style="width: 100%;">
         <form style="width: 60%;" action="" enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            <h4>add category</h4>
+            <h4>add new brand</h4>
            <!-- Name input -->
             <div class="form-outline mb-4">
-              <input name="category_name" type="text" id="form4Example1" class="w-25 form-control"/>
-              <label class="form-label" for="form4Example1">category</label>
+              <input name="brand_name" type="text" id="form4Example1" class="w-25 form-control"/>
+              <label class="form-label" for="form4Example1">brand name</label>
             </div>
           
             <!-- image input -->
             <div class="form-outline mb-4">
-              <input class="form-control" name="category_image" type="file" required >
+              <input class="form-control" name="brand_image" type="file" required >
             </div>
             <!-- Submit button -->
             <input type="submit" class="w-25 btn btn-primary btn-block mb-4">
