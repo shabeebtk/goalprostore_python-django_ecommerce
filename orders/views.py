@@ -99,11 +99,11 @@ def checkout(request):
     amount = razorpay_cash 
     request.session['razorpay_amount'] = amount
     # Create a Razorpay Order
-    # razorpay_order = razorpay_client.order.create(dict(amount=amount,
-    #                                                    currency=currency,
-    #                                                    payment_capture='0'))
-    # razorpay_order_id = razorpay_order['id']
-    # callback_url = '/order/'+'handlerequest'
+    razorpay_order = razorpay_client.order.create(dict(amount=amount,
+                                                       currency=currency,
+                                                       payment_capture='0'))
+    razorpay_order_id = razorpay_order['id']
+    callback_url = '/order/'+'handlerequest'
     
     
     # wallet 
@@ -118,11 +118,11 @@ def checkout(request):
         'sub_total': sub_total['total_sum'],
         'all_address' : all_address,
         
-        # 'razorpay_order_id': razorpay_order_id,
-        # 'razorpay_merchant_id':settings.RAZORPAY_KEY_ID,
-        # 'razorpay_amount' : amount,
-        # 'currency': currency,
-        # 'callback_url':callback_url,
+        'razorpay_order_id': razorpay_order_id,
+        'razorpay_merchant_id':settings.RAZORPAY_KEY_ID,
+        'razorpay_amount' : amount,
+        'currency': currency,
+        'callback_url':callback_url,
         
         'coupon_applied' : coupon_applied,
         'public_coupons':public_coupons,

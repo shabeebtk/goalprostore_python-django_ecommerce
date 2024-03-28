@@ -184,6 +184,9 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # razorpay api secret key 
 RAZORPAY_KEY_ID = env('RAZORPAY_KEY')
 RAZORPAY_KEY_SECRET = env('RAZORPAY_SECRET_KEY')
+
+print(RAZORPAY_KEY_ID, '----', RAZORPAY_KEY_SECRET)
+
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin-allow-popups"
 
 
